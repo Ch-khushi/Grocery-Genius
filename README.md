@@ -79,7 +79,6 @@ grocery-genius/
 |  
 ├── frontend/  
 │   ├── index.html # Main interface
-      ├──ai chat bot  #chatbase.co
 │   ├── analysis.html    # Analysis page       
 │   ├── style.css        # Styling  
 │   ├── script.js        # JavaScript functionalities  
