@@ -111,3 +111,18 @@ Advanced AI chat capabilities for voice interaction.
 Real-time integration with external APIs for advanced seasonal trend analysis.
 
 Multi-store management capabilities.
+
+# Interface
+
+![image](https://github.com/user-attachments/assets/97ae5647-363a-4dbe-af11-8097fa313fb1)
+
+![image](https://github.com/user-attachments/assets/72afe440-0bdd-4344-8dba-32541a1f39c8)
+
+![image](https://github.com/user-attachments/assets/47c58efe-985b-4dd9-9b26-a5029082f076)
+
+![image](https://github.com/user-attachments/assets/c954317e-4d29-4dd6-b4be-738e49dbee0c)
+
+
+
+
+
