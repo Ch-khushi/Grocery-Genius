@@ -1,1 +1,114 @@
+id: combine_and_clean_datasets
+namespace: my_namespace
+
+tasks:
+  - id: download-dataset-1
+    type: io.kestra.plugin.scripts.python.Script
+    namespaceFiles:
+      enabled: true
+    description: "Download the first dataset from Kaggle"
+    script: |
+      import requests
+
+      url = "https://www.kaggle.com/datasets/mohammadtalib786/retail-sales-dataset.csv"
+      response = requests.get(url)
+      if response.status_code == 200:
+          with open('data/dataset1.csv', 'wb') as file:
+              file.write(response.content)
+          print("Dataset 1 downloaded successfully.")
+      else:
+          print("Failed to download Dataset 1. Status code:", response.status_code)
+
+  - id: download-dataset-2
+    type: io.kestra.plugin.scripts.python.Script
+    namespaceFiles:
+      enabled: true
+    description: "Download the second dataset from Kaggle"
+    script: |
+      import requests
+
+      url = "https://www.kaggle.com/datasets/mithilesh9/amazon-sales-data-analysis?select=AmazonSalesData.csv"
+      response = requests.get(url)
+      if response.status_code == 200:
+          with open('data/dataset2.csv', 'wb') as file:
+              file.write(response.content)
+          print("Dataset 2 downloaded successfully.")
+      else:
+          print("Failed to download Dataset 2. Status code:", response.status_code)
+
+  - id: download-dataset-3
+    type: io.kestra.plugin.scripts.python.Script
+    namespaceFiles:
+      enabled: true
+    description: "Download the third dataset from Kaggle"
+    script: |
+      import requests
+
+      url = "https://www.kaggle.com/datasets/rashikrahmanpritom/groceries-dataset-for-market-basket-analysismba?select=Groceries+data.csv"
+      response = requests.get(url)
+      if response.status_code == 200:
+          with open('data/dataset3.csv', 'wb') as file:
+              file.write(response.content)
+          print("Dataset 3 downloaded successfully.")
+      else:
+          print("Failed to download Dataset 3. Status code:", response.status_code)
+
+  - id: download-dataset-4
+    type: io.kestra.plugin.scripts.python.Script
+    namespaceFiles:
+      enabled: true
+    description: "Download the fourth dataset from Kaggle"
+    script: |
+      import requests
+
+      url = "https://www.kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products.csv"
+      response = requests.get(url)
+      if response.status_code == 200:
+          with open('data/dataset4.csv', 'wb') as file:
+              file.write(response.content)
+          print("Dataset 4 downloaded successfully.")
+      else:
+          print("Failed to download Dataset 4. Status code:", response.status_code)
+
+  - id: combine-datasets
+    type: io.kestra.plugin.scripts.python.Script
+    namespaceFiles:
+      enabled: true
+    description: "Combine datasets into a single CSV file"
+    script: |
+      import pandas as pd
+
+      # Load datasets
+      dataset1 = pd.read_csv('data/dataset1.csv')
+      dataset2 = pd.read_csv('data/dataset2.csv')
+      dataset3 = pd.read_csv('data/dataset3.csv')
+      dataset4 = pd.read_csv('data/dataset4.csv')
+
+      # Rename columns to have a consistent schema
+      dataset1.rename(columns={'item_name': 'item', 'date_sold': 'date', 'units_sold': 'units'}, inplace=True)
+      dataset2.rename(columns={'item_description': 'item', 'sale_date': 'date'}, inplace=True)
+      dataset3.rename(columns={'product_name': 'item', 'date_of_sale': 'date', 'units_sold': 'units'}, inplace=True)
+      dataset4.rename(columns={'product': 'item', 'sold_date': 'date'}, inplace=True)
+
+      # Add a 'units' column with default value 1 to datasets that don't have it
+      if 'units' not in dataset2.columns:
+          dataset2['units'] = 1
+      if 'units' not in dataset4.columns:
+          dataset4['units'] = 1
+
+      # Combine datasets into a single DataFrame
+      combined_df = pd.concat([dataset1[['item', 'date', 'units']],
+                              dataset2[['item', 'date', 'units']],
+                              dataset3[['item', 'date', 'units']],
+                              dataset4[['item', 'date', 'units']]], ignore_index=True)
+
+      # Save the combined dataset to a CSV file
+      combined_df.to_csv('data/combined_dataset.csv', index=False)
+
+      print('Datasets combined successfully.')
+
+  - id: check-output
+    type: io.kestra.plugin.core.log.Log
+    description: "Log the success of the dataset combination"
+    message: "Datasets combined successfully."
 
