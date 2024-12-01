@@ -117,7 +117,7 @@ Multi-store management capabilities.
 
 ![image](https://github.com/user-attachments/assets/72afe440-0bdd-4344-8dba-32541a1f39c8)
 
-![image](https://github.com/user-attachments/assets/47c58efe-985b-4dd9-9b26-a5029082f076)
+![image](https://github.com/user-attachments/assets/c08f81d6-ad6e-4b09-a8f2-d1704faca057)
 
 ![image](https://github.com/user-attachments/assets/c954317e-4d29-4dd6-b4be-738e49dbee0c)
 
