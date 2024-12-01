@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Data Analysis</h1>
+    <a href="/">Back to Features</a>
+</header>
+
+<section class="analysis">
+    <h2>Sales Data Insights</h2>
+    <div class="graphs-container">
+        <div class="graph" id="barGraph">
+            <h3>Sales by Product</h3>
+            <canvas id="productBarChart"></canvas>
+        </div>
+        <div class="graph" id="lineGraph">
+            <h3>Growth Over Time</h3>
+            <canvas id="growthLineChart"></canvas>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

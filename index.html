@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1 style="color: #0c5c30;">Market Bill</h1>
+    </div>
+    <nav>
+        <a href="#" onclick="openProductsModal()">Products</a>
+        <a href="#">Trends</a>
+        <a href="#">Sale patterns</a>
+        <a href="#">Account</a>
+    </nav>
+</header>
+
+<section class="features">
+    <h2>Our Features</h2>
+    <div class="features-container">
+
+        <div class="feature-card" onclick="openModal()">
+            <img src="https://img.huffingtonpost.com/asset/5f08afa42200002907386cbe.jpeg?ops=424_244" alt="Daily Market Icon">
+            <h3>Billing Section</h3>
+            <p>Do Billings here</p>
+            <button>Open Table</button>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://www.cambridgemaths.org/Images/The-trouble-with-graphs.jpg" alt="Data Analysis Icon">
+            <h3>Data Analysis</h3>
+            <p>Explore insights and trends to grow your business effectively.</p>
+            <a href="/analysis"><button>View Analysis</button></a>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal" id="productsModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProductsModal()">&times;</span>
+        <h2>Available Products</h2>
+        <ul id="productsList">
+        </ul>
+        <button class="add-product" onclick="openAddProductModal()">Add Product</button>
+    </div>
+</div>
+
+<div class="modal" id="addProductModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddProductModal()">&times;</span>
+        <h2>Add New Product</h2>
+        <form id="addProductForm">
+            <label for="newProductName">Product Name:</label>
+            <input type="text" id="newProductName" name="newProductName" required>
+            <label for="newProductQuantity">Quantity:</label>
+            <input type="number" id="newProductQuantity" name="newProductQuantity" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Daily Market Table</h2>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID/No</th>
+                    <th>Item Name</th>
+                    <th>Cost for Each</th>
+                    <th>Quantity</th>
+                    <th>Total Sale</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="font-weight: bold;">Total:</td>
+                    <td id="grandTotal" style="font-weight: bold;">0</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <button class="add-row" onclick="addRow()">Add Row</button>
+        <button class="print" onclick="printData()">Print</button>
+        <div class="print-message" id="printMessage">Print successfully</div>
+    </div>
+</div>
+
+<script>
+    function openChatbot() {
+        if (!document.querySelector('.chatbot-container')) {
+            const chatbotDiv = document.createElement('div');
+            chatbotDiv.classList.add('chatbot-container');
+            chatbotDiv.style.position = 'fixed';
+            chatbotDiv.style.bottom = '20px';
+            chatbotDiv.style.right = '20px';
+            chatbotDiv.style.width = '350px';
+            chatbotDiv.style.height = '500px';
+            chatbotDiv.style.border = '1px solid #ccc';
+            chatbotDiv.style.borderRadius = '10px';
+            chatbotDiv.style.backgroundColor = '#fff';
+            chatbotDiv.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            chatbotDiv.style.overflow = 'hidden';
+            chatbotDiv.style.zIndex = '1000';
+            document.body.appendChild(chatbotDiv);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = "https://www.chatbase.co/embed.min.js?chatbotId=OIFHk-pVKnjhp5HtPwkCM&domain=www.chatbase.co";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            chatbotDiv.appendChild(iframe);
+        }
+    }
+
+ 
+    function closeChatbot() {
+        const chatbotDiv = document.querySelector('.chatbot-container');
+        if (chatbotDiv) {
+            chatbotDiv.remove();
+        }
+    }
+</script>
+
+
+<script>
+    window.embeddedChatbotConfig = {
+        chatbotId: "OIFHk-pVKnjhp5HtPwkCM",
+        domain: "www.chatbase.co"
+    };
+</script>
+<script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="OIFHk-pVKnjhp5HtPwkCM"
+    domain="www.chatbase.co"
+    defer>
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
