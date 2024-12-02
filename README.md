@@ -53,7 +53,7 @@ Basic knowledge of HTML, CSS, and JavaScript
 Steps
 1.Clone the repository:
 
-```git clone https://github.com/yourusername/grocery-genius.git```
+```git clone https://github.com/Ch-khushi/grocery-genius.git```
  
 2.Navigate to the project directory:
 
